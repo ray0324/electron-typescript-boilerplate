@@ -1,0 +1,12 @@
+/node_modules
+npm-debug.log
+yarn-error.log
+# IntelliJ
+*.iml
+/.idea
+*.diff
+*.patch
+/dist
+/public/config.js
+.project
+.DS_Store
