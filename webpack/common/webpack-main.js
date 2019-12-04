@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     index: './src/main/index.ts',
   },
-  watch: true,
+  // watch: true,
   watchOptions: {
     ignored: '/node_modules/',
   },

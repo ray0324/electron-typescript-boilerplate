@@ -24,6 +24,7 @@ module.exports =  {
   target: 'electron-renderer',
 
   mode: 'production',
+  node: false,
 
   entry: entry,
 

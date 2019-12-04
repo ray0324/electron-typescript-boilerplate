@@ -1,0 +1,31 @@
+.layout{
+  &-title-bar {
+    position: absolute;
+    top:0;
+    width: 100%;;
+    height: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    -webkit-app-region: drag;
+  }
+  &-container{
+    position: absolute;
+    top:30px;
+    height: calc(100% - 30px);
+    width: 100%;
+  }
+  &-sidebar{
+    position: absolute;
+    left:0;
+    width: 40px;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+  }
+  &-main{
+    position: absolute;
+    left:40px;
+    height: 100%;
+    width:  calc(100% - 40px);;
+  }
+}
