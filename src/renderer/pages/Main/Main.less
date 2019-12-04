@@ -8,3 +8,79 @@ body {
     color: #f80;
   }
 }
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.log-table tr {
+  cursor: pointer;
+}
+.log-table tr:hover td {
+  background-color: #fcfbf7;
+}
+.log-table tr.green td {
+  background-color: #e9f4eb;
+  border-bottom-color: #dae3dc;
+}
+.log-table tr.green:hover td {
+  background-color: #e0efe3;
+}
+.log-table tr.red td {
+  background-color: #f4e9e9;
+  border-bottom-color: #e3dada;
+}
+.log-table tr.red:hover td {
+  background-color: #efe0e0;
+}
+.log-table tr.yellow td {
+  background-color: #fffccc;
+  border-bottom-color: #e3dada;
+}
+.log-table tr.yellow:hover td {
+  background-color: #fffee5;
+}
+.log-table th {
+  background-color: #f7f7f7;
+  text-align: left;
+  padding: 5px 0 5px 5px;
+  color: #ababab;
+  font-weight: normal;
+  font-size: 11px;
+}
+.log-table th:first-child {
+  width: 45%;
+}
+.log-table th:nth-child(2) {
+  width: 15%;
+}
+.log-table td {
+  padding: 5px 0 5px 5px;
+  border-bottom: 1px solid #ececec;
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.log-table td:first-child {
+  font-weight: 600;
+  color: #1d1d1d;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.log-table .icon-chain {
+  width: 20px;
+  margin: 0 4px;
+  height: 12px;
+}
+.log-table small {
+  font-size: 9px;
+  color: rgba(77, 77, 77, 0.5);
+}
+.log-table td:first-child {
+  white-space: nowrap;
+}
+.log-table td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
