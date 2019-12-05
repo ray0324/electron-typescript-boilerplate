@@ -30,6 +30,7 @@
       font-size: 12px;
       box-sizing: border-box;
       padding: 0 5px;
+      -webkit-user-select: none;
     }
     .window-control {
       width: 138px;
@@ -41,12 +42,34 @@
         display: block;
         height: 30px;
         &:hover {
-          background: #eee;
+          background-color: #e6e6e6;
         }
-        &.window-close{
+        &:active {
+          background-color: #cccccc;
+        }
+        &.minimize {
           background-position: center;
           background-repeat: no-repeat;
-          background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M12%2010.586l4.95-4.95%201.414%201.414-4.95%204.95%204.95%204.95-1.414%201.414-4.95-4.95-4.95%204.95-1.414-1.414%204.95-4.95-4.95-4.95L7.05%205.636z%22%2F%3E%3C%2Fsvg%3E");
+          background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22icon%2F1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%20points%3D%226%2013%2018%2013%2018%2012%206%2012%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+        }
+        &.maximize {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22icon%2F4%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6%2C6%20L18%2C6%20L18%2C18%20L6%2C18%20L6%2C6%20Z%20M7%2C7%20L7%2C17%20L17%2C17%20L17%2C7%20L7%2C7%20Z%22%20id%3D%22%E7%9F%A9%E5%BD%A2%22%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+        }
+        &.unmaximize {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22icon%2F2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%20d%3D%22M5.5%2C7.5%20L16.5%2C7.5%20L16.5%2C18.5%20L5.5%2C18.5%20L5.5%2C7.5%20Z%20M6.5%2C8.5%20L6.5%2C17.5%20L15.5%2C17.5%20L15.5%2C8.5%20L6.5%2C8.5%20Z%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%20points%3D%228.5%206.5%2017.5%206.5%2017.5%2015.5%2016.0664062%2015.5%2016.0664062%2016.5%2018.5%2016.5%2018.5%205.5%207.5%205.5%207.5%208.12011719%208.5%208.12011719%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+        }
+        &.close {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22icon%2F3%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%20points%3D%226.69669914%207.90380592%2016.5961941%2017.8033009%2017.3033009%2017.0961941%207.40380592%207.19669914%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23262834%22%20fill-rule%3D%22nonzero%22%20points%3D%2216.5961941%207.19669914%206.69669914%2017.0961941%207.40380592%2017.8033009%2017.3033009%207.90380592%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+          &:hover {
+            background-color: #e81123;
+            background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22icon%2F3%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23ffffff%22%20fill-rule%3D%22nonzero%22%20points%3D%226.69669914%207.90380592%2016.5961941%2017.8033009%2017.3033009%2017.0961941%207.40380592%207.19669914%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20fill%3D%22%23ffffff%22%20fill-rule%3D%22nonzero%22%20points%3D%2216.5961941%207.19669914%206.69669914%2017.0961941%207.40380592%2017.8033009%2017.3033009%207.90380592%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+          }
         }
       }
     }
@@ -64,6 +87,25 @@
     height: 100%;
     box-sizing: border-box;
     background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-app-region: drag;
+    .group {
+      width: 40px;
+      -webkit-app-region: no-drag;
+      span {
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 20px;
+        &:hover{
+          background-color: #e2e2e2;
+        }
+      }
+    }
   }
   &-main {
     position: absolute;

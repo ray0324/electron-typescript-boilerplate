@@ -1,0 +1,72 @@
+{
+  "id": "1546845",
+  "name": "v2ray",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "586085",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "637290",
+      "name": "设置",
+      "font_class": "settings",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "1990486",
+      "name": "数据库",
+      "font_class": "database",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    },
+    {
+      "icon_id": "2668358",
+      "name": "安全",
+      "font_class": "secure",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "4057371",
+      "name": "服务器",
+      "font_class": "server",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "5944698",
+      "name": "服务器监控",
+      "font_class": "layer",
+      "unicode": "e6e5",
+      "unicode_decimal": 59109
+    },
+    {
+      "icon_id": "6510093",
+      "name": "网络拓扑",
+      "font_class": "net",
+      "unicode": "e835",
+      "unicode_decimal": 59445
+    },
+    {
+      "icon_id": "8115725",
+      "name": "服务器",
+      "font_class": "fuwuqi-copy",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "10794579",
+      "name": "加速云服务器",
+      "font_class": "cpu",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    }
+  ]
+}
