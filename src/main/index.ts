@@ -4,10 +4,12 @@ import path from 'path';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-// var (global as any).top: BrowserWindow;
 
 // const Menu = electron.Menu;
 // const MenuItem = electron.MenuItem;
+
+var win:BrowserWindow;
+
 const menu = new Menu();
 menu.append(new MenuItem({ label: 'Hello' }));
 menu.append(new MenuItem({ type: 'separator' }));
@@ -29,7 +31,8 @@ console.log(app.getAppPath());
 
 function createWindow() {
   // Create the browser window.
-  (global as any).top = new BrowserWindow({
+  win = new BrowserWindow({
+    show:false,
     width: 800,
     minWidth: 800,
     height: 600,
@@ -40,23 +43,30 @@ function createWindow() {
     },
   });
 
+  
+  win.on('ready-to-show',()=>{
+    win.show();
+  })
+
+
+
   const url = path.resolve(__dirname, '../renderer/main.html');
 
   console.log(`file://${url}`);
   console.log(__dirname);
 
   // and load the index.html of the app.
-  (global as any).top.loadURL(`file://${url}`);
+  win.loadURL(`file://${url}`);
 
   // Open the DevTools.
-  (global as any).top.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
-  (global as any).top.on('closed', () => {
+  win.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    (global as any).top = null;
+    win = null;
   });
 }
 
@@ -77,7 +87,7 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if ((global as any).top === null) {
+  if (win === null) {
     createWindow();
   }
 });

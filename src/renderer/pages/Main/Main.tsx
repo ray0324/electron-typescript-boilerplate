@@ -16,14 +16,14 @@ export class Main extends Component<any, { isMaximized: boolean }> {
     this.state = {
       isMaximized: top.isMaximized(),
     };
-    window.addEventListener('enter-full-screen', () => {
-      console.log('enter-full-screen');
+    top.on('maximize', () => {
+      console.log('maximize');
       this.setState({
         isMaximized: top.isMaximized(),
       });
     });
-    window.addEventListener('leave-full-screen', () => {
-      console.log('leave-full-screen');
+    top.on('unmaximize', () => {
+      console.log('unmaximize');
       this.setState({
         isMaximized: top.isMaximized(),
       });

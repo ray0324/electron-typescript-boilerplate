@@ -4,9 +4,8 @@ import './BasicLayout.less';
 
 export function BasicLayout(props: any) {
   // console.log(props.window);
-
   const win = props.window;
-  const cls = win.isMaximized() ? 'unmaximize' : 'maximize';
+  const cls = props.isMaximized ? 'unmaximize' : 'maximize';
   return (
     <>
       <div className="layout-title-bar">
@@ -28,7 +27,6 @@ export function BasicLayout(props: any) {
         <div className="layout-sidebar">
           <div className="group">
             <span className="icon iconfont icon-home"></span>
-            <span className="icon iconfont icon-layer"></span>
             <span className="icon iconfont icon-server"></span>
             <span className="icon iconfont icon-database"></span>
             <span className="icon iconfont icon-secure"></span>
