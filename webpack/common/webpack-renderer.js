@@ -3,34 +3,24 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const entry = {
-  login: './src/renderer/pages/Login/index.tsx',
-  main: './src/renderer/pages/Main/index.tsx',
-  about: './src/renderer/pages/About/index.tsx',
-};
+module.exports = function(entry, env) {
+  const config = {
+    name: 'renderer',
+    target: 'electron-renderer',
+    node: false,
+    mode: env,
+  };
 
-const output = {
-  filename: 'js/[name].js',
-  chunkFilename: 'js/chunk-[name].js',
-  publicPath: './',
-  path: path.resolve(__dirname, '../../dist/renderer/'),
-};
+  config.entry = entry;
 
-console.log(path.resolve(__dirname, '../../src/renderer/'));
+  config.output = {
+    filename: 'js/[name].js',
+    chunkFilename: 'js/chunk-[name].js',
+    publicPath: './',
+    path: path.resolve(__dirname, '../../dist/renderer/'),
+  };
 
-module.exports =  {
-  name: 'renderer',
-
-  target: 'electron-renderer',
-
-  mode: 'production',
-  node: false,
-
-  entry: entry,
-
-  output: output,
-
-  module: {
+  config.module = {
     rules: [
       {
         test: /\.tsx?$/,
@@ -76,6 +66,7 @@ module.exports =  {
               // you can specify a publicPath here
               // by default it use publicPath in webpackOptions.output
               publicPath: '../',
+              hmr: env === 'development',
             },
           },
           'css-loader',
@@ -84,9 +75,9 @@ module.exports =  {
         ],
       },
     ],
-  },
+  };
 
-  optimization: {
+  config.optimization = {
     runtimeChunk: false,
     minimize: true,
     splitChunks: {
@@ -114,34 +105,70 @@ module.exports =  {
         },
       },
     },
-  },
+  };
 
-  resolve: {
+  config.resolve = {
     // 可以在导入的时候省略后缀
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.less'],
     alias: {
       '@': path.resolve(__dirname, '../../src/renderer/'),
     },
-  },
+  };
 
-  plugins: [
+  const htmlWebpackPlugins = Object.keys(config.entry).map(key => {
+    return new HtmlWebpackPlugin({
+      filename: `${key}.html`,
+      chunks: ['vendor', key],
+      hash: true,
+      template: './src/renderer/document.ejs',
+    });
+  });
+
+  config.plugins = [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: 'css/[name]-[hash].css',
       chunkFilename: 'css/chunk-[name].css',
     }),
-    new HtmlWebpackPlugin({
-      filename: 'main.html',
-      chunks: ['vendor', 'main'],
-      hash: true,
-      title: 'main',
-      template: './src/renderer/document.ejs',
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'login.html',
-      chunks: ['vendor', 'login'],
-      hash: true,
-      title: 'login',
-      template: './src/renderer/document.ejs',
-    }),
-  ],
+    ...htmlWebpackPlugins,
+  ];
+
+  config.devServer = {
+    host: '0.0.0.0',
+    port: 9000,
+    hot: true,
+    clientLogLevel: 'none',
+    // When using the HTML5 History API Fallback
+    historyApiFallback: true,
+    disableHostCheck: true,
+    // progress: true,
+    // Content not from webpack is served from
+    contentBase: [path.resolve(__dirname, '../../dist')],
+    // file path
+    publicPath: `/renderer/`,
+    headers: {
+      'X-Auth-By': 'ray0324',
+    },
+    // api proxy
+    proxy: {
+      '/req': { target: 'http://localhost:81', secure: false },
+    },
+    stats: {
+      timings: true,
+      modules: false,
+      assets: false,
+      entrypoints: false,
+      builtAt: false,
+      cached: false,
+      cachedAssets: false,
+      children: false,
+      chunks: false,
+      chunkGroups: false,
+      chunkModules: false,
+      chunkOrigins: false,
+      performance: true,
+      errors: true,
+    },
+  };
+
+  return config;
 };

@@ -7,4 +7,4 @@ const entry = {
   about: './src/renderer/pages/About/index.tsx',
 };
 
-module.exports = [renderer(entry, 'development'), main('development')];
+module.exports = [main('production'), renderer(entry, 'production')];
