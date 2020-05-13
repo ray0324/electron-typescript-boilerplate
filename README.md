@@ -4,4 +4,4 @@ electron 模板
 
 ## 构建工具
 
-- webpack
+- webpack-merge

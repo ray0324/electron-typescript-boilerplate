@@ -8,7 +8,7 @@ import path from 'path';
 // const Menu = electron.Menu;
 // const MenuItem = electron.MenuItem;
 
-var win:BrowserWindow;
+var win: BrowserWindow;
 
 const menu = new Menu();
 menu.append(new MenuItem({ label: 'Hello' }));
@@ -17,8 +17,8 @@ menu.append(
   new MenuItem({ label: 'Electron', type: 'checkbox', checked: true })
 );
 
-app.on('browser-window-created', function(event, win) {
-  win.webContents.on('context-menu', function(e, params) {
+app.on('browser-window-created', function (event, win) {
+  win.webContents.on('context-menu', function (e, params) {
     menu.popup({
       window: win,
       x: params.x,
@@ -32,7 +32,8 @@ console.log(app.getAppPath());
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    show:false,
+    icon: null,
+    show: false,
     width: 800,
     minWidth: 800,
     height: 600,
@@ -40,23 +41,25 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
+      experimentalFeatures: true,
     },
   });
 
-  
-  win.on('ready-to-show',()=>{
+  win.on('ready-to-show', () => {
     win.show();
-  })
+  });
 
+  // const url = path.resolve(__dirname, '../renderer/main.html');
 
+  const url = `http://localhost:9000/renderer/main.html`;
 
-  const url = path.resolve(__dirname, '../renderer/main.html');
-
-  console.log(`file://${url}`);
+  // console.log(`file://${url}`);
   console.log(__dirname);
 
   // and load the index.html of the app.
-  win.loadURL(`file://${url}`);
+  // win.loadURL(`file://${url}`);
+  console.log(url);
+  win.loadURL(url);
 
   // Open the DevTools.
   win.webContents.openDevTools();
